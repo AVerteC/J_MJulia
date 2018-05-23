@@ -2,13 +2,11 @@
 precision mediump float;
 precision mediump int;
 #endif
-#define MAX_ITER 1000
+#define MAX_ITER 500
 
-uniform sampler2D texture;
+
 uniform vec2 u_resolution;
-uniform vec4 iMouse;
-varying vec4 vertColor;
-varying vec4 vertTextCoordl
+uniform vec2 iMouse;
 
 //z starts with an initial value of the pixel(c1) and then you 
 //add c2 in the iteration which can 
@@ -53,8 +51,6 @@ return c;
 
 void main(void)
 {
-vec4 screen = texture2D(texture, vertTexCoord.st);
-gl_FragCoord.xy = screen.xy;
     vec2 p = (2.*gl_FragCoord.xy - u_resolution.xy)/(u_resolution.x);
     vec2 mousein = (2.*iMouse.xy - u_resolution.xy)/(u_resolution.x);
     float iCount = fJulia((2.*p), mousein);
